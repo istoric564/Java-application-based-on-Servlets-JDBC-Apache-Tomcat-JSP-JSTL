@@ -3,6 +3,8 @@ package http.dao;
 import http.entity.FlightStatus;
 import http.entity.entityFlight;
 import http.util.ConnectionManager;
+import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -10,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FlightDao implements Dao<Long, entityFlight>{
+
+public class FlightDao implements Dao<Long, entityFlight> {
 
     private static final FlightDao INSTANCE = new FlightDao();
 
@@ -19,7 +22,7 @@ public class FlightDao implements Dao<Long, entityFlight>{
             FROM flight
             """;
 
-    private FlightDao(){
+    public FlightDao() {
     }
 
     @Override
@@ -29,7 +32,7 @@ public class FlightDao implements Dao<Long, entityFlight>{
             var resultSet = preparedStatement.executeQuery();
             List<entityFlight> flights = new ArrayList<>();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 flights.add(buildFlight(resultSet));
             }
             return flights;
@@ -37,7 +40,6 @@ public class FlightDao implements Dao<Long, entityFlight>{
             throw new RuntimeException(throwables);
         }
     }
-
 
     @Override
     public Optional<entityFlight> findById() {
@@ -51,7 +53,6 @@ public class FlightDao implements Dao<Long, entityFlight>{
 
     @Override
     public void update(entityFlight entity) {
-
     }
 
     @Override
@@ -63,15 +64,16 @@ public class FlightDao implements Dao<Long, entityFlight>{
         return INSTANCE;
     }
 
+
     private entityFlight buildFlight(ResultSet resultSet) throws SQLException {
         return new entityFlight(
                 resultSet.getObject("id", Long.class),
                 resultSet.getObject("flight_no", String.class),
                 resultSet.getObject("departure_date", Timestamp.class).toLocalDateTime(),
-                resultSet.getObject("departure_airport_code",String.class),
-                resultSet.getObject("arrival_date",Timestamp.class).toLocalDateTime(),
-                resultSet.getObject("arrival_airport_code",String.class),
-                resultSet.getObject("aircraft_id",Integer.class),
-                FlightStatus.valueOf(resultSet.getObject("status",String.class)));
+                resultSet.getObject("departure_airport_code", String.class),
+                resultSet.getObject("arrival_date", Timestamp.class).toLocalDateTime(),
+                resultSet.getObject("arrival_airport_code", String.class),
+                resultSet.getObject("aircraft_id", Integer.class),
+                FlightStatus.valueOf(resultSet.getObject("status", String.class)));
     }
 }
