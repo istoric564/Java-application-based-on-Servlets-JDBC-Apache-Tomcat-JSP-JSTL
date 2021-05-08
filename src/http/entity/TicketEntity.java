@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Value
-@Builder
-@AllArgsConstructor
 public class TicketEntity {
 
     Long id;

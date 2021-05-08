@@ -6,6 +6,7 @@ import http.util.ConnectionManager;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
+import javax.naming.Context;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class FlightDao implements Dao<Long, entityFlight> {
     }
 
 
-    private entityFlight buildFlight(ResultSet resultSet) throws SQLException {
+    public entityFlight buildFlight(ResultSet resultSet) throws SQLException {
         return new entityFlight(
                 resultSet.getObject("id", Long.class),
                 resultSet.getObject("flight_no", String.class),

@@ -39,7 +39,7 @@ public class TicketDao implements Dao<Long, TicketEntity> {
         }
     }
 
-    private TicketEntity buildTicket(ResultSet resultSet) throws SQLException {
+    public TicketEntity buildTicket(ResultSet resultSet) throws SQLException {
         return new TicketEntity(
           resultSet.getObject("id",Long.class),
           resultSet.getObject("passenger_no",String.class),
