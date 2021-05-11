@@ -43,11 +43,10 @@ public class RegistrationServlet extends HttpServlet {
         try {
             userService.create(createUserDto);
             resp.sendRedirect("/login");
-        } catch (ValidationException exception){
+        } catch (ValidationException exception) {
             req.setAttribute("errors", exception.getErrors());
             doGet(req, resp);
         }
-
 
 
     }

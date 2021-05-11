@@ -19,12 +19,12 @@ public class LocalDateFormatter {
         return LocalDate.parse(date, FORMATTER);
     }
 
-    public boolean isValid(String date){
+    public boolean isValid(String date) {
         try {
             return Optional.ofNullable(date)
                     .map(LocalDateFormatter::format)
                     .isPresent();
-        } catch (DateTimeParseException exception){
+        } catch (DateTimeParseException exception) {
             return false;
         }
     }

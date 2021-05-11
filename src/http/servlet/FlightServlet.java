@@ -22,6 +22,6 @@ public class FlightServlet extends HttpServlet {
         req.setAttribute("flights", flightService.findAll());
 
         req.getRequestDispatcher(JspHelper.getPath("flights"))
-                .forward(req,resp);
+                .forward(req, resp);
     }
 }

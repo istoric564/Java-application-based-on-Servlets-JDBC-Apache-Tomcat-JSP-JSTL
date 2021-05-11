@@ -19,13 +19,13 @@ public class HttpServer {
         this.pool = Executors.newFixedThreadPool(poolSize);
     }
 
-    public void run(){
+    public void run() {
         try {
             var serverSocket = new ServerSocket(port);
-            while (!stopped){
+            while (!stopped) {
                 var socket = serverSocket.accept();
                 System.out.println("Socket accepted");
-                pool.submit(() ->processSocket(socket));
+                pool.submit(() -> processSocket(socket));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -37,7 +37,7 @@ public class HttpServer {
         try (socket;
              var inputStream = new DataInputStream(socket.getInputStream());
              var outputStream = new DataOutputStream(socket.getOutputStream())) {
-        //step 1 handle request
+            //step 1 handle request
             System.out.println("Request: " + new String(inputStream.readNBytes(400)));
 
             Thread.sleep(10000);

@@ -15,7 +15,7 @@ public class SocketServerRunner {
              var inputStream = new DataInputStream(socket.getInputStream());
              var scanner = new Scanner(System.in)) {
             var requestClient = inputStream.readUTF();
-            while(!"stop".equals(requestClient)){
+            while (!"stop".equals(requestClient)) {
                 System.out.println("Client request: " + requestClient);
                 var response = scanner.nextLine();
                 outputStream.writeUTF(response);

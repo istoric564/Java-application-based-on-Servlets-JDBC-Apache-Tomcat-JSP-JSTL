@@ -28,7 +28,7 @@ public class FirstServlet extends HttpServlet {
         System.out.println();
 
         resp.setContentType("text/html");
-        resp.setHeader("token","12345");
+        resp.setHeader("token", "12345");
         try (var writer = resp.getWriter()) {
             writer.write("<h1>Hello from First Servlet</h2>");
         }

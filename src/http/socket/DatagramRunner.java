@@ -8,7 +8,7 @@ public class DatagramRunner {
         var localhost = Inet4Address.getByName("localhost");
         try (var datagramSocket = new DatagramSocket()) {
             var bytes = "Hello from UDP client".getBytes();
-            DatagramPacket packet = new DatagramPacket(bytes, bytes.length,localhost,767);
+            DatagramPacket packet = new DatagramPacket(bytes, bytes.length, localhost, 767);
             datagramSocket.send(packet);
         }
 

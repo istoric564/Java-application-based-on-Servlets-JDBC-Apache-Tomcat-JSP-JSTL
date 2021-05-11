@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Список перелетов</title>
 </head>
 <body>
 <h1>Список перелетов: </h1>

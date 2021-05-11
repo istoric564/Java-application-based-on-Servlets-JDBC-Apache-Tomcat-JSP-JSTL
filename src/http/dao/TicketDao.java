@@ -18,19 +18,19 @@ public class TicketDao implements Dao<Long, TicketEntity> {
             SELECT *
             FROM ticket
             WHERE flight_id = ?
-            """ ;
+            """;
 
-    private TicketDao(){
+    private TicketDao() {
     }
 
-    public List<TicketEntity> findAllByFlight(Long flightId){
+    public List<TicketEntity> findAllByFlight(Long flightId) {
         try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(FIND_ALL_BY_FLIGHT_ID)) {
-            preparedStatement.setObject(1,flightId);
+            preparedStatement.setObject(1, flightId);
 
             var resultSet = preparedStatement.executeQuery();
             List<TicketEntity> tickets = new ArrayList<>();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 tickets.add(buildTicket(resultSet));
             }
             return tickets;
@@ -41,12 +41,12 @@ public class TicketDao implements Dao<Long, TicketEntity> {
 
     public TicketEntity buildTicket(ResultSet resultSet) throws SQLException {
         return new TicketEntity(
-          resultSet.getObject("id",Long.class),
-          resultSet.getObject("passenger_no",String.class),
-          resultSet.getObject("passenger_name",String.class),
-          resultSet.getObject("flight_id",Long.class),
-          resultSet.getObject("seat_no",String.class),
-          resultSet.getObject("cost", BigDecimal.class)
+                resultSet.getObject("id", Long.class),
+                resultSet.getObject("passenger_no", String.class),
+                resultSet.getObject("passenger_name", String.class),
+                resultSet.getObject("flight_id", Long.class),
+                resultSet.getObject("seat_no", String.class),
+                resultSet.getObject("cost", BigDecimal.class)
         );
     }
 

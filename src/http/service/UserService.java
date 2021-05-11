@@ -17,7 +17,7 @@ public class UserService {
 
     public Integer create(CreateUserDto userDto) {
         var validationResult = createUserValidator.isValid(userDto);
-        if(!validationResult.isValid()) {
+        if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
         var userEntity = createUserMapper.mapFrom(userDto);
